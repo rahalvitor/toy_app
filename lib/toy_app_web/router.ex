@@ -17,8 +17,9 @@ defmodule ToyAppWeb.Router do
   scope "/", ToyAppWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/", UserController, :index
     resources "/users", UserController
+    resources "/microposts", MicropostController
   end
 
   # Other scopes may use custom stacks.
