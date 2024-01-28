@@ -3,6 +3,7 @@ defmodule ToyAppWeb.UserController do
 
   alias ToyApp.Accounts
   alias ToyApp.Accounts.User
+  alias ToyApp.Posts
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -28,7 +29,8 @@ defmodule ToyAppWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
-    render(conn, :show, user: user)
+    first_micropost = Posts.get_first_micropost_from_user(id)
+    render(conn, :show, user: user, micropost: first_micropost)
   end
 
   def edit(conn, %{"id" => id}) do

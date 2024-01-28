@@ -5,8 +5,8 @@ defmodule ToyApp.Accounts do
 
   import Ecto.Query, warn: false
   alias ToyApp.Repo
-
   alias ToyApp.Accounts.User
+
 
   @doc """
   Returns the list of users.
@@ -17,6 +17,8 @@ defmodule ToyApp.Accounts do
       [%User{}, ...]
 
   """
+
+
   def list_users do
     Repo.all(User)
   end

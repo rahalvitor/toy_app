@@ -5,7 +5,6 @@ defmodule ToyApp.Posts do
 
   import Ecto.Query, warn: false
   alias ToyApp.Repo
-
   alias ToyApp.Posts.Micropost
 
   @doc """
@@ -36,7 +35,21 @@ defmodule ToyApp.Posts do
 
   """
   def get_micropost!(id), do: Repo.get!(Micropost, id)
-
+  def get_last_micropost_from_user(user_id) do
+    query =
+      from m in Micropost,
+      where: m.user_id == ^user_id,
+      order_by: [desc: :updated_at]
+    Repo.all(query)
+    |> List.first
+    end
+  def get_first_micropost_from_user(user_id) do
+      query =
+        from m in Micropost,
+        where: m.user_id == ^user_id
+      Repo.all(query)
+      |> List.first
+  end
   @doc """
   Creates a micropost.
 
